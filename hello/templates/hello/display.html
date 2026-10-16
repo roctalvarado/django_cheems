@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+    <html >
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Bienvenido al sistema</title>
+            <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+        </head>
+        <body>
+            <main class="welcome">
+                <h1>Bienvenido al sistema</h1>
+                <p class="welcome-intro">Elige una sección para continuar.</p>
+
+                <nav class="route-list" aria-label="Secciones del sistema">
+                    <a class="route-card" href="{% url 'index' %}">
+                        <h2>Usuarios</h2>
+                        <p>Consulta las cuentas y los perfiles registrados en el sistema.</p>
+                        <span class="route-action">Ver usuarios &rarr;</span>
+                    </a>
+                    <a class="route-card" href="{% url 'logs' %}">
+                        <h2>Registro de actividad</h2>
+                        <p>Revisa los eventos y cambios guardados en la bitácora.</p>
+                        <span class="route-action">Ver registros &rarr;</span>
+                    </a>
+                    <a class="route-card" href="{% url 'admin:index' %}">
+                        <h2>Administración</h2>
+                        <p>Accede al panel de administración de Django.</p>
+                        <span class="route-action">Abrir administración &rarr;</span>
+                    </a>
+                </nav>
+            </main>
+        </body>
+</html>
