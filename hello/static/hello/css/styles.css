@@ -19,7 +19,7 @@
 
         .welcome-intro {
             margin: 0 0 32px;
-            color: #004dff;
+            color: #021641;
             font-size: 1.1rem;
         }
 
@@ -79,7 +79,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
+    
+    background-color: #3973c8;
     color: #263238;
 }
 
@@ -118,7 +119,10 @@ tbody tr:hover {
     background-color: #eef4f8;
 }
 .contenedorwelcome{
-    background-color: #eef4f8;
-
+    background-color: rgb(255, 255, 255);
+    width: 1200px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
