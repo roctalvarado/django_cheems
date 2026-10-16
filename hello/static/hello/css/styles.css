@@ -118,6 +118,8 @@ th {
 tbody tr:hover {
     background-color: #eef4f8;
 }
+
+/*Dysplay*/
 .contenedorwelcome{
     background-color: rgb(255, 255, 255);
     width: 1200px;
@@ -125,4 +127,8 @@ tbody tr:hover {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
+/*Index*/
+/*logs*/
+/*ordenes*/
+/*todos*/
 
