@@ -150,6 +150,7 @@ tbody tr:hover {
 /*logs*/
 /*ordenes*/
 /*todos*/
+/*
 .contenedorperfilmenucerrarsesion {
     position: absolute;
     top: 20px;
@@ -167,4 +168,43 @@ tbody tr:hover {
     align-items: center;
     justify-content: space-around;
 }
+*/
+/* la cosita para abrir y cerrar la pestañita que contiene perfil menu cerrar sesion*/
+.btn-perfil {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+}
 
+.contenedorperfilmenucerrarsesion {
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    z-index: 10;
+    width: 300px;
+    height: auto;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.contenedorperfilmenucerrarsesion.oculto {
+    display: none;
+}
+
+.contenedorperfilmenucerrarsesion a {
+    color: inherit;
+    text-decoration: none;
+}
