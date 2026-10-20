@@ -16,10 +16,6 @@ def logs(request):
     logs = Log.get_all()
     return render(request, 'hello/logs.html', {'logs': logs})
 
-
-
-
-
-def lista_ordenes(request):
+def ordenes(request):
     ordenes = Ordenes.get_all()
     return render(request, 'hello/ordenes.html', {'ordenes': ordenes})

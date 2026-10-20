@@ -5,7 +5,18 @@
         <title>Órdenes de Trabajo</title>
         <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
     </head>
+    
     <body>
+       
+        <button id="btn-perfil" class="btn-perfil" type="button">☰</button>
+
+        <div class="contenedorperfilmenucerrarsesion oculto" id="panel-perfil">
+                    <p>Perfil</p>
+                    <p><a href="{% url 'inicio' %}">Menu</a></p>
+                    <p>Cerrar sesión</p>
+                    <p>aun no funciona porfa no lo toquen ni le muevan, este cuadrito lo voy a hacer yo </p>
+                    
+        </div>   
         <h1>Consulta de órdenes de trabajo</h1>
 
         <table class="table-user">

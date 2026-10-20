@@ -1,40 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Órdenes</title>
-  <style>
-    body { font-family: sans-serif; margin: 2rem; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #f2f2f2; }
-  </style>
-</head>
-<body>
-  <h1>Lista de órdenes</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descripción</th>
-        <th>Estado</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      {% for orden in ordenes %}
-      <tr>
-        <td>{{ orden.id }}</td>
-        <td>{{ orden.title }}</td>
-        <td>{{ orden.description }}</td>
-        <td>{{ orden.status }}</td>
-        
-      </tr>
-      {% empty %}
-      <tr><td colspan="5">No hay órdenes registradas</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</body>
+  <head>
+    <title>Órdenes</title>
+    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+  </head>
+  <body>
+    <button id="btn-perfil" class="btn-perfil" type="button">☰</button>
+    <div class="contenedorperfilmenucerrarsesion oculto" id="panel-perfil">
+      <p>Perfil</p>
+      <p><a href="{% url 'inicio' %}">Menu</a></p>
+      <p>Cerrar sesión</p>
+      <p>aun no funciona porfa no lo toquen ni le muevan, este cuadrito lo voy a hacer yo </p>
+                      
+    </div>   
+    <h1>Lista de órdenes</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for orden in ordenes %}
+        <tr>
+          <td>{{ orden.id }}</td>
+          <td>{{ orden.title }}</td>
+          <td>{{ orden.description }}</td>
+          <td>{{ orden.status }}</td>
+          
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No hay órdenes registradas</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <script src="{% static 'hello/js/scripts.js' %}"></script>
+  </body>
 </html>
