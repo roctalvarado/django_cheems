@@ -78,9 +78,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'caracoldb',
         'USER': 'root',
-        'PASSWORD': '64571ok.',
+        'PASSWORD': '250597Pi',
         'HOST': 'localhost',
-        'PORT': '3308',
+        'PORT': '3306',
     }
 }
 
@@ -128,5 +128,8 @@ STATIC_URL = 'static/'
 MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
+        
     },
 }
+# Guardar la sesión en una cookie firmada para no necesitar la tabla django_session
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
