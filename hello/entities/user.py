@@ -4,7 +4,8 @@ from django.utils.crypto import constant_time_compare
 from ..enums.profile import Profile
 
 class User:
-    def __init__(self, name, account, profile):
+    def __init__(self, id,name, account, profile):
+        self.id = id
         self.name = name
         self.account = account
         self.profile = Profile(profile)
@@ -13,7 +14,7 @@ class User:
     def get_all():
         with connection.cursor() as cursor:
             cursor.execute("""
-                SELECT name, account, profile 
+                SELECT id, name, account, profile 
                 FROM `user`
             """)
             rows = cursor.fetchall()

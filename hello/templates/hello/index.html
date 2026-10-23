@@ -26,6 +26,7 @@
                         <th>Nombre</th>
                         <th>Cuenta</th>
                         <th>Perfil</th>
+                        <th>Ordenes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +36,10 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.account }}</td>
                             <td>{{ user.profile.name }}</td>
+                            <td><a href="{% url 'historial_ordenes' user.id %}">Ver historial de órdenes</a></td>
                         </tr>
+                        {% empty %}
+                        <tr><td colspan="4">No hay usuarios registrados.</td></tr>
                         {% endfor %}
                     </tbody>
                 </tbody>
