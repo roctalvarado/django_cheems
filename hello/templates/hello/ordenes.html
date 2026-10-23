@@ -56,7 +56,17 @@
             <td>{{ orden.id }}</td>
             <td>{{ orden.title }}</td>
             <td>{{ orden.description }}</td>
-            <td>{{ orden.status }}</td>
+            <td>
+              <form method="post" action="{% url 'cambiar_estado' orden.id %}">
+                {% csrf_token %}
+                <select name="status">
+                  <option value="1" {% if orden.status == 1 %}selected{% endif %}>Iniciado</option>
+                  <option value="2" {% if orden.status == 2 %}selected{% endif %}>En proceso</option>
+                  <option value="3" {% if orden.status == 3 %}selected{% endif %}>Finalizado</option>
+                </select>
+                <button type="submit">Cambiar</button>
+              </form>
+            </td>
             
           </tr>
           {% empty %}
