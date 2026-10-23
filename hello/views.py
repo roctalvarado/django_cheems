@@ -10,17 +10,23 @@ from hello.entities.order_history import OrderHistory
 def display(request):
     if not request.session.get('user_id'):
         return redirect('login')
-    return render(request, 'hello/display.html')
+    return render(request, 'hello/display.html', {
+    'account': request.session.get('user_name'),})
 
 
 def index(request):
     users = User.get_all()
-    return render(request, 'hello/index.html', {'users': users})
-
+    return render(request, 'hello/index.html', {
+        'users': users,
+        'account': request.session.get('user_name'),
+    })
 
 def logs(request):
     logs = Log.get_all()
-    return render(request, 'hello/logs.html', {'logs': logs})
+    return render(request, 'hello/logs.html', {
+        'logs': logs,
+        'account': request.session.get('user_name'),
+    })
 
 
 def ordenes(request):
@@ -41,8 +47,12 @@ def ordenes(request):
         return render(request, 'hello/ordenes.html', {
             'ordenes': Ordenes.get_all(),
             'error': error,
+            'account': request.session.get('user_name'),
         })
-    return render(request, 'hello/ordenes.html', {'ordenes': Ordenes.get_all()})
+    return render(request, 'hello/ordenes.html', {
+        'ordenes': Ordenes.get_all(),
+        'account': request.session.get('user_name'),
+    })
 
 
 def login(request):
