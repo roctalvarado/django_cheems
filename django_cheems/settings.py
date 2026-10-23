@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'caracoldb',
         'USER': 'root',
-        'PASSWORD': 'admin',
+        'PASSWORD': '64571ok.',
         'HOST': 'localhost',
         'PORT': '3306',
     }
