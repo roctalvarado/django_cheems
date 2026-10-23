@@ -11,6 +11,10 @@
         <div class="contenedor-login">
             <h1>Login</h1>
 
+            {% if request.GET.registrado %}
+                <p>Cuenta creada. Ya puedes iniciar sesión.</p>
+            {% endif %}
+
             {% if error %}
                 <p>{{ error }}</p>
             {% endif %}
@@ -27,6 +31,8 @@
                 </p>
                 <button type="submit">Iniciar sesión</button>
             </form>
+
+            <p><a href="{% url 'signup' %}">¿No tienes cuenta? Regístrate</a></p>
         </div>
     </body>
 </html>

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.db import IntegrityError
 from .entities.user import User
 from .entities.log import Log
 from .entities.ordenes import Ordenes
+from .enums.profile import Profile
 from hello.entities.order_history import OrderHistory
-
 
 # Create your views here.
 def display(request):
@@ -94,3 +95,36 @@ def cambiar_estado(request, id_work_order):
                 status), request.session['user_id'])
 
     return redirect('ordenes')
+
+def signup(request):
+    if request.session.get('user_id'):
+        return redirect('inicio')
+
+    error = None
+    name = ''
+    account = ''
+
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        account = request.POST.get('account', '').strip()
+        password = request.POST.get('password', '')
+        password2 = request.POST.get('password2', '')
+
+        if not name or not account or not password:
+            error = 'Completa todos los campos.'
+        elif len(name) > 45 or len(account) > 45:
+            error = 'El nombre y la cuenta deben tener máximo 45 caracteres.'
+        elif password != password2:
+            error = 'Las contraseñas no coinciden.'
+        else:
+            try:
+                User.create(name, account, password, Profile.OPERADOR)
+                return redirect('/?registrado=1')
+            except IntegrityError:
+                error = 'Ya existe un usuario con esa cuenta.'
+
+    return render(request, 'hello/signup.html', {
+        'error': error,
+        'name': name,
+        'account': account,
+    })

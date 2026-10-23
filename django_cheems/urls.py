@@ -29,5 +29,6 @@ urlpatterns = [
     path('', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('ordenes/<int:id_work_order>/estado/',
-         views.cambiar_estado, name='cambiar_estado')
+         views.cambiar_estado, name='cambiar_estado'),
+    path('signup/', views.signup, name='signup')
 ]
