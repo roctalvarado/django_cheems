@@ -24,7 +24,10 @@ urlpatterns = [
     path('logs/', views.logs, name='logs'),
     path('index/', views.index, name='index'),
     path('ordenes/', views.ordenes, name='ordenes'),
-    path('usuarios/<int:id_user>/', views.historial_ordenes, name='historial_ordenes'),
+    path('usuarios/<int:id_user>/',
+         views.historial_ordenes, name='historial_ordenes'),
     path('', views.login, name='login'),
-    path('logout/', views.logout, name='logout')
+    path('logout/', views.logout, name='logout'),
+    path('ordenes/<int:id_work_order>/estado/',
+         views.cambiar_estado, name='cambiar_estado')
 ]
