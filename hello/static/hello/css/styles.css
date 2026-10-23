@@ -48,13 +48,47 @@
             flex-direction: column;
             gap: 12px;
             padding: 22px;
-            border: 3px solid rgb(27, 58, 179);
+            border: 3px solid rgb(124, 96, 30, 1);
             border-radius: 8px;
-            background: rgba(180, 183, 255, 0.55);
+            background: rgba(236, 221, 185, 0.55);
             color: inherit;
             text-decoration: none;
             transition: transform 150ms ease, background-color 150ms ease;
         }
+        
+        .small-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+
+            padding: 9px 14px;
+            border: 2px solid rgba(124, 96, 30, 1);
+            border-radius: 5px;
+
+            background: rgba(236, 221, 185, 0.55);
+            color: inherit;
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+
+            cursor: pointer;
+            transition:
+                transform 150ms ease,
+                background-color 150ms ease;
+        }
+
+        .small-button:hover {
+            background-color: rgba(236, 221, 185, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .small-button:active {
+            transform: translateY(0);
+        }
+
 
         .route-card:hover,
         .route-card:focus-visible {
@@ -210,129 +244,573 @@ tbody tr:hover {
 }
 
 
+/* =====================================================
+   DJANGO CHEEMS
+   Tema: papel de archivo, tinta y amarillo industrial
+   ===================================================== */
+
+:root {
+    --paper: #efe8d8;
+    --paper-line: rgba(60, 50, 30, .07);
+    --sheet: #fbf8f1;
+    --ink: #16130e;
+    --ink-soft: #6b6255;
+    --safety: #f2b705;
+    --red: #c8102e;
+    --blue: #1f4fbf;
+    --border: 2px solid var(--ink);
+    --shadow: 7px 7px 0 var(--ink);
+}
+
 * {
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+}
+
 body {
+    min-height: 100vh;
     margin: 0;
-    padding: 30px;
-    background-color: #f4f3fa;
-    color: #30263d;
-    font-family: 'Fredoka', sans-serif;
+    padding: 32px 24px;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(var(--paper-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =====================================================
+   TITULOS
+   ===================================================== */
+
+h1, h2, h3, h4 {
+    color: var(--ink);
+    font-family: Impact, "Arial Narrow", sans-serif;
+    font-weight: 800;
+    line-height: 1.15;
 }
 
 h1 {
-    margin: 0 0 25px;
-    color: #702d91;
-    font-size: 32px;
+    margin: 0 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--ink);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    text-transform: uppercase;
+    letter-spacing: .5px;
 }
 
 h2 {
-    color: #702d91;
-    margin-bottom: 18px;
+    font-size: 1.8rem;
 }
 
-.contenedorwelcome,
-.contenedor-login,
-.contenedor-ordenes {
+h3 {
+    font-size: 1.35rem;
+}
+
+p {
+    color: var(--ink);
+}
+
+/* Evita los encabezados morados del diseño anterior */
+.contenedorwelcome h1,
+.contenedorwelcome h2,
+.contenedorwelcome h3 {
+    color: var(--ink);
+}
+
+/* =====================================================
+   CONTENEDOR DE LAS PAGINAS
+   ===================================================== */
+
+.contenedorwelcome {
     width: 100%;
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 28px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(48, 38, 61, 0.10);
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 32px;
+    background: var(--sheet);
+    border: var(--border);
+    border-radius: 0;
+    box-shadow: var(--shadow);
 }
 
-form {
+/* =====================================================
+   LOGIN: CENTRADO Y COMPACTO
+   ===================================================== */
+
+body:has(form input[name="password"]) {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 600px;
-    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
 }
 
-label {
-    font-weight: 500;
-}
-
-input,
-textarea,
-select {
+body:has(form input[name="password"]) .contenedorwelcome {
     width: 100%;
+    max-width: 440px;
+    margin: auto;
+    padding: 32px;
+    background: var(--sheet);
+    border: var(--border);
+    border-radius: 0;
+    box-shadow: var(--shadow);
+}
+
+body:has(form input[name="password"]) .contenedorwelcome h1 {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* Columna centrada del formulario */
+body:has(form input[name="password"]) form {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Etiquetas */
+label,
+.form-label,
+form label,
+fieldset legend {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-weight: 700;
+}
+
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+select,
+textarea,
+.form-control,
+.form-select {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    min-width: 0;
+    min-height: 44px;
+    margin: 0 auto 20px;
     padding: 11px 12px;
-    border: 1px solid #cfc5d8;
-    border-radius: 7px;
+
+    color: var(--ink);
+    background: var(--sheet);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    outline: none;
     font: inherit;
 }
 
+/* Evita que el textarea se redimensione manualmente */
 textarea {
-    min-height: 100px;
-    resize: vertical;
+    resize: none;
+    height: 120px;
 }
 
+/* Centra el formulario completo */
+form {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Fondo de selección */
+select option {
+    color: var(--ink);
+    background: var(--sheet);
+}
+
+/* Botones generales */
 button,
-.boton,
-a.boton {
+input[type="submit"],
+.btn,
+.btn-primary {
     display: inline-block;
-    width: fit-content;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 7px;
-    background-color: #702d91;
-    color: white;
-    font: inherit;
+    padding: 12px 20px;
+    color: var(--ink);
+    background: var(--safety);
+    border: var(--border);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
     cursor: pointer;
+    transition: background .15s, color .15s;
 }
 
 button:hover,
-.boton:hover,
-a.boton:hover {
-    background-color: #54216f;
+input[type="submit"]:hover,
+.btn:hover,
+.btn-primary:hover {
+    color: var(--safety);
+    background: var(--ink);
 }
+
+/* Botón del login */
+body:has(form input[name="password"]) form button,
+body:has(form input[name="password"]) form input[type="submit"],
+body:has(form input[name="password"]) form .btn {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Cuadrícula de tarjetas */
+.dashboard-grid,
+.welcome-grid,
+.menu-grid,
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+/* Apariencia de cada tarjeta */
+.dashboard-card,
+.welcome-card,
+.menu-card,
+.card-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    min-height: 240px;
+    padding: 24px;
+    color: var(--ink);
+    background: #f4efdf;
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 4px 4px 0 var(--ink);
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s, background .15s;
+}
+
+.dashboard-card:hover,
+.welcome-card:hover,
+.menu-card:hover,
+.card-link:hover {
+    color: var(--ink);
+    background: #f9e8a8;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* Título dentro de la tarjeta */
+.dashboard-card h2,
+.dashboard-card h3,
+.welcome-card h2,
+.welcome-card h3,
+.menu-card h2,
+.menu-card h3,
+.card-link h2,
+.card-link h3 {
+    margin: 0 0 14px;
+    color: var(--ink);
+    font-family: Impact, "Arial Narrow", sans-serif;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+/* Descripción */
+.dashboard-card p,
+.welcome-card p,
+.menu-card p,
+.card-link p {
+    margin: 0 0 18px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Enlace dentro de la tarjeta */
+.dashboard-card .card-action,
+.welcome-card .card-action,
+.menu-card .card-action,
+.card-link .card-action {
+    margin-top: auto;
+    color: #725400;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* =====================================================
+   REGISTRO DE ORDENES Y OTROS FORMULARIOS
+   ===================================================== */
+
+/* El registro no debe extenderse por toda la pantalla */
+.contenedorwelcome form {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Las tablas pueden ocupar el contenedor completo;
+   los formularios se mantienen limitados */
+.contenedorwelcome form label {
+    margin-top: 4px;
+}
+
+/* El formulario de login conserva su propio ancho */
+body:has(form input[name="password"]) .contenedorwelcome form {
+    max-width: 100%;
+}
+
+/* Botón de registro alineado a la izquierda */
+.contenedorwelcome form button,
+.contenedorwelcome form input[type="submit"] {
+    width: auto;
+    min-width: 190px;
+}
+
+/* =====================================================
+   TABLAS: ORDENES, HISTORIAL, USUARIOS Y LOGS
+   ===================================================== */
 
 .table-user,
 table {
     width: 100%;
+    margin: 24px 0;
+    background: var(--sheet);
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
-th,
-td {
-    padding: 12px;
-    border-bottom: 1px solid #e4dce9;
+.table-user {
+    border: var(--border);
+}
+
+.table-user thead th,
+table thead th {
+    padding: 14px 16px;
+    color: var(--safety);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
     text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-th {
-    background-color: #702d91;
-    color: white;
+.table-user tbody td,
+table tbody td {
+    padding: 14px 16px;
+    color: var(--ink);
+    border-bottom: 1px dashed rgba(22, 19, 14, .3);
+    vertical-align: middle;
 }
 
-tbody tr:hover {
-    background-color: #f7f1fa;
+.table-user tbody tr:nth-child(even),
+table tbody tr:nth-child(even) {
+    background: rgba(60, 50, 30, .035);
 }
 
-@media (max-width: 600px) {
+.table-user tbody tr:hover,
+table tbody tr:hover {
+    background: rgba(242, 183, 5, .16);
+}
+
+.table-user tbody tr:last-child td,
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Tabla ancha en móvil */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* =====================================================
+   MENU DE PERFIL: ESQUINA SUPERIOR IZQUIERDA
+   Conserva el selector .btn-perfil y su posición fija.
+   No modifica su funcionalidad JavaScript.
+   ===================================================== */
+
+.btn-perfil {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    padding: 0;
+
+    color: var(--safety);
+    background: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 4px 4px 0 rgba(22, 19, 14, .3);
+
+    font-family: inherit;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.btn-perfil:hover {
+    color: var(--ink);
+    background: var(--safety);
+}
+
+/* No cambiar posición ni apariencia de elementos
+   internos del menú de perfil reservado. */
+
+/* =====================================================
+   SELLOS DE PERFIL
+   ===================================================== */
+
+.stamp {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 2px solid currentColor;
+    border-radius: 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stamp-administrador {
+    color: var(--red);
+}
+
+.stamp-operador {
+    color: var(--blue);
+}
+
+/* =====================================================
+   MENSAJES Y ERRORES
+   ===================================================== */
+
+.errorlist,
+.alert-danger,
+.error-message {
+    margin: 0 0 18px;
+    padding: 12px;
+    color: #8f1025;
+    background: #f8e5e3;
+    border-left: 4px solid var(--red);
+}
+
+.helptext,
+.form-text {
+    color: var(--ink-soft);
+}
+
+.empty,
+td[colspan] {
+    padding: 28px 16px;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+/* =====================================================
+   PIE DE PAGINA
+   ===================================================== */
+
+.page-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    color: var(--ink-soft);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.page-footer::before,
+.page-footer::after {
+    content: "";
+    flex: 1;
+    border-top: 1px dashed var(--ink-soft);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+    .dashboard-grid,
+    .welcome-grid,
+    .menu-grid,
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contenedorwelcome {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 560px) {
     body {
-        padding: 12px;
+        padding: 88px 14px 24px;
     }
 
-    .contenedorwelcome,
-    .contenedor-login,
-    .contenedor-ordenes {
-        padding: 16px;
+    .contenedorwelcome {
+        margin: 12px auto;
+        padding: 20px 16px;
+        box-shadow: 4px 4px 0 var(--ink);
     }
 
-    table {
-        font-size: 13px;
+    body:has(form input[name="password"]) {
+        padding: 20px 14px;
     }
 
-    th,
-    td {
-        padding: 8px;
+    body:has(form input[name="password"]) .contenedorwelcome {
+        max-width: 440px;
+        padding: 24px 18px;
+    }
+
+    .dashboard-grid,
+    .welcome-grid,
+    .menu-grid,
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card,
+    .welcome-card,
+    .menu-card,
+    .card-link {
+        min-height: 190px;
+    }
+
+    .contenedorwelcome form {
+        max-width: 100%;
+    }
+
+    .contenedorwelcome form button,
+    .contenedorwelcome form input[type="submit"] {
+        max-width: 100%;
+    }
+
+    .btn-perfil {
+        top: 14px;
+        left: 14px;
+        width: 54px;
+        height: 54px;
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 }
