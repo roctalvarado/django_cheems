@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .entities.user import User
 from .entities.log import Log
-from hello.entities import user
 from .entities.ordenes import Ordenes
+from hello.entities.order_history import OrderHistory
+
 
 # Create your views here.
 def display(request):
@@ -19,12 +20,27 @@ def logs(request):
     return render(request, 'hello/logs.html', {'logs': logs})
 
 def ordenes(request):
-    ordenes = Ordenes.get_all()
-    return render(request, 'hello/ordenes.html', {'ordenes': ordenes})
+    if request.method == 'POST':
+        if not request.session.get('user_id'):
+            return redirect('login')
+
+        title = request.POST.get('title', '').strip()
+        description = request.POST.get('description', '').strip()
+        status = request.POST.get('status', '1').strip()
+
+        if title and description and status in ('1', '2', '3'):
+            Ordenes.create(title, description, int(status), request.session['user_id'])
+            return redirect('ordenes')
+
+        error = 'Completa el título, la descripción y selecciona un estado.'
+        return render(request, 'hello/ordenes.html', {
+            'ordenes': Ordenes.get_all(),
+            'error': error,
+        })
+    return render(request, 'hello/ordenes.html', {'ordenes': Ordenes.get_all()})
 
 def login(request):
-    if request.session.get('user_id'):
-        return redirect('inicio')
+
 
     error = None
     account = ''
@@ -49,3 +65,13 @@ def login(request):
 def logout(request):
     request.session.flush()
     return redirect('login')
+
+def historial_ordenes(request, id_user):
+    user_orders = OrderHistory.get_by_user(id_user)
+    with_user = next((u for u in User.get_all() if u.id == id_user), None)
+    if with_user is None:
+        return redirect('index')
+    return render(request, 'hello/historial_ordenes.html', {
+        'usuario': with_user,
+        'historial': user_orders,
+    })

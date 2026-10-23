@@ -208,3 +208,131 @@ tbody tr:hover {
     color: inherit;
     text-decoration: none;
 }
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    background-color: #f4f3fa;
+    color: #30263d;
+    font-family: 'Fredoka', sans-serif;
+}
+
+h1 {
+    margin: 0 0 25px;
+    color: #702d91;
+    font-size: 32px;
+}
+
+h2 {
+    color: #702d91;
+    margin-bottom: 18px;
+}
+
+.contenedorwelcome,
+.contenedor-login,
+.contenedor-ordenes {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 28px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(48, 38, 61, 0.10);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: 500;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #cfc5d8;
+    border-radius: 7px;
+    font: inherit;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button,
+.boton,
+a.boton {
+    display: inline-block;
+    width: fit-content;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+    background-color: #702d91;
+    color: white;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover,
+.boton:hover,
+a.boton:hover {
+    background-color: #54216f;
+}
+
+.table-user,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e4dce9;
+    text-align: left;
+}
+
+th {
+    background-color: #702d91;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f7f1fa;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .contenedorwelcome,
+    .contenedor-login,
+    .contenedor-ordenes {
+        padding: 16px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}

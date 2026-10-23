@@ -14,8 +14,33 @@
       <p>aun no funciona porfa no lo toquen ni le muevan, este cuadrito lo voy a hacer yo </p>
                       
     </div> 
-    <div class="contenedorwelcome">  
+    <div class="contenedor-ordenes">  
       <h1>Lista de órdenes</h1>
+
+      {% if request.session.user_id %}
+      <h2>Registrar orden de trabajo</h2>
+      {% if error %}<p>{{ error }}</p>{% endif %}
+      <form method="post">
+          {% csrf_token %}
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" required>
+
+          <label for="description">Descripción</label>
+          <textarea id="description" name="description" required></textarea>
+
+          <label for="status">Estado</label>
+          <select id="status" name="status" required>
+              <option value="1">Iniciado</option>
+              <option value="2">En proceso</option>
+              <option value="3">Finalizado</option>
+          </select>
+          <button type="submit">Registrar orden</button>
+      </form>
+      {% else %}
+      <p><a href="{% url 'login' %}">Inicia sesión</a> para registrar una orden.</p>
+      {% endif %}
+
+      <h2>Órdenes registradas</h2>
       <table>
         <thead>
           <tr>
@@ -23,7 +48,6 @@
             <th>Título</th>
             <th>Descripción</th>
             <th>Estado</th>
-            
           </tr>
         </thead>
         <tbody>
