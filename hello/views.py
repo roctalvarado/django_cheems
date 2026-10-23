@@ -11,13 +11,16 @@ def display(request):
         return redirect('login')
     return render(request, 'hello/display.html')
 
+
 def index(request):
     users = User.get_all()
     return render(request, 'hello/index.html', {'users': users})
 
+
 def logs(request):
     logs = Log.get_all()
     return render(request, 'hello/logs.html', {'logs': logs})
+
 
 def ordenes(request):
     if request.method == 'POST':
@@ -29,7 +32,8 @@ def ordenes(request):
         status = request.POST.get('status', '1').strip()
 
         if title and description and status in ('1', '2', '3'):
-            Ordenes.create(title, description, int(status), request.session['user_id'])
+            Ordenes.create(title, description, int(
+                status), request.session['user_id'])
             return redirect('ordenes')
 
         error = 'Completa el título, la descripción y selecciona un estado.'
@@ -39,8 +43,8 @@ def ordenes(request):
         })
     return render(request, 'hello/ordenes.html', {'ordenes': Ordenes.get_all()})
 
-def login(request):
 
+def login(request):
 
     error = None
     account = ''
@@ -62,9 +66,11 @@ def login(request):
 
     return render(request, 'hello/login.html', {'error': error, 'account': account})
 
+
 def logout(request):
     request.session.flush()
     return redirect('login')
+
 
 def historial_ordenes(request, id_user):
     user_orders = OrderHistory.get_by_user(id_user)
@@ -75,3 +81,16 @@ def historial_ordenes(request, id_user):
         'usuario': with_user,
         'historial': user_orders,
     })
+
+
+def cambiar_estado(request, id_work_order):
+    if not request.session.get('user_id'):
+        return redirect('login')
+
+    if request.method == 'POST':
+        status = request.POST.get('status', '')
+        if status in ('1', '2', '3'):
+            Ordenes.change_status(id_work_order, int(
+                status), request.session['user_id'])
+
+    return redirect('ordenes')
